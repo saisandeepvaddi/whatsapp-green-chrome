@@ -26,6 +26,7 @@
       "css": ["style.css"]
     }
   ],
+  "options_page": "options.html",
   "permissions": [
     "tabs",
     "https://web.whatsapp.com/*",

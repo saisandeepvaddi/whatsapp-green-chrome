@@ -21,18 +21,4 @@ $(document).ready(function() {
     }
   });
 
-  setTimeout(function() {
-    var unreadCount = $("span.unread-count.icon-meta").get();
-    var count = 0;
-    for (var i = 0; i < unreadCount.length; i++) {
-      var element = $(unreadCount[i]).text();
-      console.log("Element: ", i, ": ", element);
-      count = count + element;
-    }
-    console.log("Count: ", Number(count));
-
-    chrome.runtime.sendMessage({
-      messageCount: Number(count)
-    });
-  }, 5000);
 });
