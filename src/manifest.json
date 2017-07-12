@@ -1,0 +1,42 @@
+{
+  "manifest_version": 2,
+  "version": "1.0",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "name": "whatsapp-green",
+  "description": "A better WhatsApp Web Experience",
+  "page_action": {
+    "default_icon": "icon16.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["eventPage.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://web.whatsapp.com/*",
+        "https://developer.chrome.com/*"
+      ],
+      "js": ["jquery.min.js", "content.js"],
+      "css": ["style.css"]
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "https://web.whatsapp.com/*",
+    "https://developer.chrome.com/*"
+  ],
+  "commands": {
+    "toggle_chat_window": {
+      "suggested_key": {
+        "default": "Alt+Shift+K"
+      },
+      "description": "Toggle Chat window"
+    }
+  }
+}
