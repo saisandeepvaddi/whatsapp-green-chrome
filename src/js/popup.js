@@ -11,14 +11,13 @@ function applyTheme(theme) {
 }
 
 $(function() {
-  chrome.storage.sync.get("theme", function(currentTheme) {
-    // alert(currentTheme.theme);
-  });
+  // chrome.storage.sync.get("theme", function(currentTheme) {
+  //   applyTheme(currentTheme.theme);
+  // });
   $("#apply-theme").on("click", function() {
     var newTheme = $("#theme").val();
     chrome.storage.sync.set({ theme: newTheme });
     chrome.storage.sync.get("theme", function(currentTheme) {
-      alert(currentTheme.theme);
       applyTheme(currentTheme.theme);
     });
   });

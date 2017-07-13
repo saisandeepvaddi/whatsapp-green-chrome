@@ -39,6 +39,18 @@
         "default": "Alt+Shift+K"
       },
       "description": "Toggle Chat window"
+    },
+    "add_seperate_window": {
+      "suggested_key": {
+        "default": "Alt+Shift+W"
+      },
+      "description": "Add extra Chat window"
+    },
+    "arrange_multiple_windows": {
+      "suggested_key": {
+        "default": "Alt+Shift+E"
+      },
+      "description": "Arrange Multiple Windows"
     }
   }
 }
