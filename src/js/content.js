@@ -2,6 +2,16 @@ chrome.runtime.sendMessage({
   todo: "showPageAction"
 });
 
+function closeSidebar() {
+  $(".chatlist-panel").css("display", "none");
+  $("#main").css("width", "100%");
+  $("#main").css("height", "100%");
+}
+
+function showSidebar() {
+  $(".chatlist-panel").css("display", "flex");
+}
+
 $(document).ready(function() {
   var isSidebarClosed = false;
   var winCount = 0;
@@ -10,21 +20,17 @@ $(document).ready(function() {
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.toggle === "toggleChatWindow") {
       if (!isSidebarClosed) {
-        $(".chatlist-panel").css("display", "none");
-        $("#main").css("width", "100%");
-        $("#main").css("height", "100%");
+        closeSidebar();
       } else {
-        $(".chatlist-panel").css("display", "flex");
+        showSidebar();
       }
       isSidebarClosed = !isSidebarClosed;
     }
 
-    if (request.addWindow === "addExtraChatWindow") {
-      if (winCount < 3) {
-        var win = $("#main").clone(true, true).addClass(winCount + 1);
-        chatWindows.push(win);
-      }
-      console.log("Chat Windows: ", chatWindows);
+    if (request.addWindow === "addSeparateWindow") {
+      console.log("Asking to add separate window");
+      // var win = $("#main").clone(true, true).addClass(winCount + 1);
+      $(".chatlist-panel").css("pointer-events", "none");
     }
   });
 });

@@ -35,7 +35,7 @@ chrome.commands.onCommand.addListener(function(command) {
       },
       function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {
-          addWindow: "addExtraChatWindow"
+          addWindow: "addSeparateWindow"
         });
       }
     );
