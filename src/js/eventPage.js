@@ -21,6 +21,20 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       }
     );
   }
+
+  if (request.theme) {
+    chrome.tabs.query(
+      {
+        active: true,
+        currentWindow: true
+      },
+      function(tabs) {
+        console.log("Asking to insert");
+
+        chrome.tabs.insertCSS(tabs[0].id, { file: "test.css" });
+      }
+    );
+  }
 });
 
 chrome.commands.onCommand.addListener(function(command) {
@@ -34,3 +48,5 @@ chrome.commands.onCommand.addListener(function(command) {
     }
   );
 });
+
+
