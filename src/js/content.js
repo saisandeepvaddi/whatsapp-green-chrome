@@ -14,9 +14,12 @@ function showSidebar() {
 
 $(document).ready(function() {
   var isSidebarClosed = false;
+  var isChatListPanelLocked = false;
   var winCount = 0;
   var chatWindows = [];
-  var unreadCount = $(".chatlist-panel").find(".unread-count");
+  $("div.input").ready(function() {
+    $("div.input").css("color", "green");
+  });
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.toggle === "toggleChatWindow") {
       if (!isSidebarClosed) {
@@ -27,10 +30,14 @@ $(document).ready(function() {
       isSidebarClosed = !isSidebarClosed;
     }
 
-    if (request.addWindow === "addSeparateWindow") {
-      console.log("Asking to add separate window");
-      // var win = $("#main").clone(true, true).addClass(winCount + 1);
-      $(".chatlist-panel").css("pointer-events", "none");
+    if (request.lockChatListPanel === "lockChatListPanel") {
+      $("div.input").css("color", "green");
+      if (!isChatListPanelLocked) {
+        $(".chatlist-panel").css("pointer-events", "none");
+      } else {
+        $(".chatlist-panel").css("pointer-events", "auto");
+      }
+      isChatListPanelLocked = !isChatListPanelLocked;
     }
   });
 });

@@ -13,9 +13,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 });
 
 chrome.commands.onCommand.addListener(function(command) {
-  console.log("Command: ", command);
-
   if (command === "toggle_chat_window") {
+    console.log("Toggle");
+
     chrome.tabs.query(
       {
         active: true,
@@ -27,7 +27,9 @@ chrome.commands.onCommand.addListener(function(command) {
     );
   }
 
-  if (command === "add_seperate_window") {
+  if (command === "lock_chatlist_panel") {
+    console.log("Lock");
+
     chrome.tabs.query(
       {
         active: true,
@@ -35,7 +37,7 @@ chrome.commands.onCommand.addListener(function(command) {
       },
       function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {
-          addWindow: "addSeparateWindow"
+          lockChatListPanel: "lockChatListPanel"
         });
       }
     );

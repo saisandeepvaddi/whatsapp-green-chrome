@@ -40,17 +40,11 @@
       },
       "description": "Toggle Chat window"
     },
-    "add_seperate_window": {
+    "lock_chatlist_panel": {
       "suggested_key": {
-        "default": "Alt+Shift+W"
+        "default": "Alt+Shift+L"
       },
-      "description": "Add extra Chat window"
-    },
-    "arrange_multiple_windows": {
-      "suggested_key": {
-        "default": "Alt+Shift+E"
-      },
-      "description": "Arrange Multiple Windows"
+      "description": "Lock Chatlist Panel"
     }
   }
 }
