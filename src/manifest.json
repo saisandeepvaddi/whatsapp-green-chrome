@@ -27,12 +27,7 @@
     }
   ],
   "options_page": "options.html",
-  "permissions": [
-    "tabs",
-    "storage",
-    "https://web.whatsapp.com/*",
-    "https://developer.chrome.com/*"
-  ],
+  "permissions": ["tabs", "storage", "https://web.whatsapp.com/*"],
   "commands": {
     "toggle_chat_window": {
       "suggested_key": {
@@ -45,6 +40,12 @@
         "default": "Alt+Shift+L"
       },
       "description": "Lock Chatlist Panel"
+    },
+    "enable_confirm_message": {
+      "suggested_key": {
+        "default": "Alt+Shift+S"
+      },
+      "description": "Ask before sending message"
     }
   }
 }

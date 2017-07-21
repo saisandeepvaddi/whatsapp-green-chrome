@@ -13,17 +13,22 @@ function showSidebar() {
 }
 
 function confirmSend(message) {
-  var shouldSendMessage = confirm("Confirm message to " + $("h2.chat-title .emojitext").text() + " \n" + message);
+  var shouldSendMessage = confirm(
+    "Confirm message to " +
+      $("h2.chat-title .emojitext").text() +
+      " \n" +
+      message
+  );
   return shouldSendMessage;
 }
 
-function setStrictLanguage() {
-  $("div.input").on("keydown", function (e) {
+function setConfirmBeforeSending() {
+  $("div.input").css("color", "green");
+  $("div.input").on("keydown", function(e) {
     $("button.compose-btn-send").css("visibility", "hidden");
-
     if (e.which === 13) {
       e.preventDefault();
-      var message = $(this).text()
+      var message = $(this).text();
       if (confirmSend(message)) {
         $("button.compose-btn-send").click();
       } else {
@@ -33,13 +38,13 @@ function setStrictLanguage() {
   });
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
   var isSidebarClosed = false;
   var isChatListPanelLocked = false;
   var winCount = 0;
   var chatWindows = [];
 
-  chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.toggle === "toggleChatWindow") {
       if (!isSidebarClosed) {
         closeSidebar();
@@ -50,14 +55,16 @@ $(document).ready(function () {
     }
 
     if (request.lockChatListPanel === "lockChatListPanel") {
-      $("div.input").css("color", "green");
-      setStrictLanguage();
       if (!isChatListPanelLocked) {
         $(".chatlist-panel").css("pointer-events", "none");
       } else {
         $(".chatlist-panel").css("pointer-events", "auto");
       }
       isChatListPanelLocked = !isChatListPanelLocked;
+    }
+
+    if (request.enableConfirmMessage === "enableConfirmMessage") {
+      setConfirmBeforeSending();
     }
   });
 });

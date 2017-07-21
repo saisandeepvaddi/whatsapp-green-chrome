@@ -28,8 +28,6 @@ chrome.commands.onCommand.addListener(function(command) {
   }
 
   if (command === "lock_chatlist_panel") {
-    console.log("Lock");
-
     chrome.tabs.query(
       {
         active: true,
@@ -38,6 +36,19 @@ chrome.commands.onCommand.addListener(function(command) {
       function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {
           lockChatListPanel: "lockChatListPanel"
+        });
+      }
+    );
+  }
+  if (command === "enable_confirm_message") {
+    chrome.tabs.query(
+      {
+        active: true,
+        currentWindow: true
+      },
+      function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, {
+          enableConfirmMessage: "enableConfirmMessage"
         });
       }
     );
