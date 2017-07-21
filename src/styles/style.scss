@@ -1,0 +1,20 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+ul {
+  margin: 1px;
+  padding: 1px;
+  list-style: none;
+}
+
+.container {
+  height: 200px;
+  width: 200px;
+}
+
+.shortcut_name {
+  color: green;
+  font-weight: bold;
+}
