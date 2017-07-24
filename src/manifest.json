@@ -18,14 +18,11 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "https://web.whatsapp.com/*"
-      ],
+      "matches": ["https://web.whatsapp.com/*"],
       "js": ["jquery.min.js", "alertify.min.js", "content.js"],
       "css": ["style.css", "alertify.core.css"]
     }
   ],
-  "options_page": "options.html",
   "permissions": ["tabs", "storage", "https://web.whatsapp.com/*"],
   "commands": {
     "toggle_chat_window": {

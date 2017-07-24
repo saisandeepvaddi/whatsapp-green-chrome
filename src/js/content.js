@@ -34,8 +34,7 @@ function setConfirmBeforeSending() {
         labels: {
           ok: "Send",
           cancel: "Cancel",
-          buttonFocus: "cancel",
-          buttonReverse: true
+          buttonFocus: "cancel"
         }
       });
 
