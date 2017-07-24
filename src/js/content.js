@@ -13,10 +13,11 @@ function showSidebar() {
 }
 
 function confirmSend(message) {
-  var shouldSendMessage = confirm(
+  var shouldSendMessage = false;
+  var test = alertify.confirm(
     "Confirm message to " +
       $("h2.chat-title .emojitext").text() +
-      " \n" +
+      " \n : " +
       message
   );
   return shouldSendMessage;
@@ -29,11 +30,28 @@ function setConfirmBeforeSending() {
     if (e.which === 13) {
       e.preventDefault();
       var message = $(this).text();
-      if (confirmSend(message)) {
-        $("button.compose-btn-send").click();
-      } else {
-        return;
-      }
+      alertify.set({
+        labels: {
+          ok: "Send",
+          cancel: "Cancel",
+          buttonFocus: "cancel",
+          buttonReverse: true
+        }
+      });
+
+      alertify.confirm(
+        "Confirm message to " +
+          $("h2.chat-title .emojitext").text() +
+          " \n : " +
+          message,
+        function(e) {
+          if (e) {
+            $("button.compose-btn-send").click();
+          } else {
+            return;
+          }
+        }
+      );
     }
   });
 }
